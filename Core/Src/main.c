@@ -28,7 +28,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-/* USER CODE END PTD */	
+/* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
@@ -65,7 +65,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+  uint32_t pre = 0;          /* 上一次翻转的时刻，只初始化一次 */
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -92,13 +92,19 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+	
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_12);
-    HAL_Delay(500);
+    uint32_t now = HAL_GetTick();          /* 现在几点，每圈重新读 */
+
+    if (now - pre >= 500)                  /* 距离上次够 500ms 吗 */
+    {
+      pre += 500;                          /* 按节拍累加，长期不漂移 */
+      HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    }
   }
   /* USER CODE END 3 */
 }
