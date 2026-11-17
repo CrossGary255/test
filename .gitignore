@@ -2,11 +2,11 @@
 #  Keil MDK / ARM Compiler 6 编译产物
 #  这些是每次编译都会重新生成的文件，不该进仓库
 # ============================================================
-MDK-ARM/GPIO/
-MDK-ARM/Objects/
-MDK-ARM/Listings/
-MDK-ARM/DebugConfig/
-MDK-ARM/RTE/
+**/MDK-ARM/GPIO/
+**/MDK-ARM/Objects/
+**/MDK-ARM/Listings/
+**/MDK-ARM/DebugConfig/
+**/MDK-ARM/RTE/
 *.o
 *.d
 *.crf
